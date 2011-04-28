@@ -48,4 +48,26 @@ class Model_Oz_Product extends ORM {
 		return ORM::factory('product_photo', $this->primary_photo_id);
 	}
 
+	/**
+	 * Overload the delete method to remove all photo file & directory
+	 *
+	 * @return mixed
+	 */
+	public function delete()
+	{
+		$photo_dir = 'assets/photos/'.$this->id;
+		$foo = parent::delete();
+
+		foreach (new DirectoryIterator($photo_dir) as $file)
+		{
+			if ($file->isFile())
+			{
+				unlink($file->getPathName());
+			}
+		}
+		rmdir($photo_dir);
+
+		return $foo;
+	}
+
 }

@@ -21,4 +21,17 @@ class Model_Oz_Product_Photo extends ORM {
 		);
 	}
 
+	/**
+	 * Overload the delete method to remove the file
+	 *
+	 * @return mixed
+	 */
+	public function delete()
+	{
+		$filename = $this->filename;
+		$foo = parent::delete();
+		unlink($filename);
+		return $foo;
+	}
+
 }
