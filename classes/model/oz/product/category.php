@@ -27,7 +27,8 @@ class Model_Oz_Product_Category extends ORM {
 	public function filters()
 	{
 		return array(
-			'name' => array(array('trim')),
+			'name'        => array(array('trim')),
+			'description' => array(array('trim')),
 		);
 	}
 
@@ -48,11 +49,12 @@ class Model_Oz_Product_Category extends ORM {
 		foreach ($product_categories as $category)
 		{
 			$tree[] = array(
-				'id'        => $category->id,
-				'name'      => $category->name,
-				'order'     => (int) $category->order,
-				'parent_id' => (int) $category->parent_id,
-				'children'  => $this->full_tree($category->id),
+				'id'          => $category->id,
+				'name'        => $category->name,
+				'description' => $category->description,
+				'order'       => (int) $category->order,
+				'parent_id'   => (int) $category->parent_id,
+				'children'    => $this->full_tree($category->id),
 			);
 		}
 		return $tree;
