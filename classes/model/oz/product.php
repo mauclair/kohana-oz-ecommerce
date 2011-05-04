@@ -49,6 +49,22 @@ class Model_Oz_Product extends ORM {
 	}
 
 	/**
+	 * Overload the save method to set the sale_price to NULL if an empty
+	 * or 0.00 value was given
+	 *
+	 * @return mixed
+	 */
+	public function save(Validation $validation=NULL)
+	{
+		if ( ! $this->sale_price)
+		{
+			$this->sale_price = NULL;
+		}
+
+		return parent::save($validation);
+	}
+
+	/**
 	 * Overload the delete method to remove all photo file & directory
 	 *
 	 * @return mixed
