@@ -25,7 +25,10 @@ class Model_Oz_Product extends ORM {
 			'name'             => array(array('not_empty')),
 			'description'      => array(array('not_empty')),
 			'price'            => array(array('not_empty'), array('numeric')),
-			'sale_price'       => array(array('numeric')),
+			'sale_price'       => array(
+				array('numeric'),
+				array('lt', array(':value', $this->price)),
+			),
 			'quantity'         => array(array('not_empty'), array('digit')),
 			'primary_photo_id' => array(array('digit')),
 		);
@@ -60,7 +63,6 @@ class Model_Oz_Product extends ORM {
 		{
 			$this->sale_price = NULL;
 		}
-
 		return parent::save($validation);
 	}
 
