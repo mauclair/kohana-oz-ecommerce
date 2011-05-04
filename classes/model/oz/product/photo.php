@@ -30,7 +30,12 @@ class Model_Oz_Product_Photo extends ORM {
 	{
 		$filename = $this->filename;
 		$foo = parent::delete();
-		unlink($filename);
+
+		if (file_exists($filename))
+		{
+			unlink($filename);
+		}
+
 		return $foo;
 	}
 
