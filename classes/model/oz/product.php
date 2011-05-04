@@ -58,14 +58,17 @@ class Model_Oz_Product extends ORM {
 		$photo_dir = 'assets/photos/'.$this->id;
 		$foo = parent::delete();
 
-		foreach (new DirectoryIterator($photo_dir) as $file)
+		if (is_dir($photo_dir))
 		{
-			if ($file->isFile())
+			foreach (new DirectoryIterator($photo_dir) as $file)
 			{
-				unlink($file->getPathName());
+				if ($file->isFile())
+				{
+					unlink($file->getPathName());
+				}
 			}
+			rmdir($photo_dir);
 		}
-		rmdir($photo_dir);
 
 		return $foo;
 	}
