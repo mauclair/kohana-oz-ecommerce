@@ -11,7 +11,8 @@ class Model_Oz_Product_Category extends ORM {
 
 	protected $_has_many = array(
 		'products' => array(
-			'through' => 'product_categories_products'
+			'through'     => 'product_categories_products',
+			'foreign_key' => 'category_id',
 		)
 	);
 
