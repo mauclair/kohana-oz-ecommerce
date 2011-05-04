@@ -16,8 +16,15 @@ class Model_Oz_Product_Photo extends ORM {
 	public function rules()
 	{
 		return array(
-			'product_id' => array(array('not_empty'), array('digit')),
-			'filename'   => array(array('not_empty'), array('is_file')),
+			'product_id' => array(
+				array('not_empty'),
+				array('digit'),
+				array('gt', array(':value', 0))
+			),
+			'filename'   => array(
+				array('not_empty'),
+				array('is_file')
+			),
 		);
 	}
 

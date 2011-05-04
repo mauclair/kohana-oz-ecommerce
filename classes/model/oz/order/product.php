@@ -16,10 +16,26 @@ class Model_Oz_Order_Product extends ORM {
 	public function rules()
 	{
 		return array(
-			'order_id'   => array(array('not_empty'), array('digit')),
-			'product_id' => array(array('not_empty'), array('digit')),
-			'quantity'   => array(array('not_empty'), array('digit')),
-			'price'      => array(array('not_empty'), array('numeric')),
+			'order_id'   => array(
+				array('not_empty'),
+				array('digit'),
+				array('gt', array(':value', 0))
+			),
+			'product_id' => array(
+				array('not_empty'),
+				array('digit'),
+				array('gt', array(':value', 0))
+			),
+			'quantity'   => array(
+				array('not_empty'),
+				array('digit'),
+				array('gt', array(':value', 0))
+			),
+			'price'      => array(
+				array('not_empty'),
+				array('numeric'),
+				array('gte', array(':value', 0))
+			),
 		);
 	}
 

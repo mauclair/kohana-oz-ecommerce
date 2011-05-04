@@ -24,13 +24,25 @@ class Model_Oz_Product extends ORM {
 		return array(
 			'name'             => array(array('not_empty')),
 			'description'      => array(array('not_empty')),
-			'price'            => array(array('not_empty'), array('numeric')),
+			'price'            => array(
+				array('not_empty'),
+				array('numeric'),
+				array('gte', array(':value', 0))
+			),
 			'sale_price'       => array(
 				array('numeric'),
 				array('lt', array(':value', $this->price)),
+				array('gte', array(':value', 0))
 			),
-			'quantity'         => array(array('not_empty'), array('digit')),
-			'primary_photo_id' => array(array('digit')),
+			'quantity'         => array(
+				array('not_empty'),
+				array('digit'),
+				array('gte', array(':value', 0))
+			),
+			'primary_photo_id' => array(
+				array('digit'),
+				array('gt', array(':value', 0))
+			),
 		);
 	}
 

@@ -18,8 +18,14 @@ class Model_Oz_Order extends ORM {
 	public function rules()
 	{
 		return array(
-			'shipping_price'       => array(array('numeric')),
-			'vat_rate'             => array(array('numeric')),
+			'shipping_price'       => array(
+				array('numeric'),
+				array('gte', array(':value', 0))
+			),
+			'vat_rate'             => array(
+				array('numeric'),
+				array('gte', array(':value', 0))
+			),
 			'billing_name'         => array(array('not_empty')),
 			'billing_addr1'        => array(array('not_empty')),
 			'billing_postal_code'  => array(array('not_empty')),
