@@ -76,7 +76,7 @@ class Model_Oz_Product_Category extends ORM {
 	 *
 	 * @return mixed
 	 */
-	public function find_cheapest_products()
+	public function cheapest_products()
 	{
 		if ( ! $this->loaded())
 			return $this->products;
@@ -88,8 +88,7 @@ class Model_Oz_Product_Category extends ORM {
 
 		return $this->products
 			->where('price', '=', $minprice)
-			->or_where('sale_price', '=', $minprice)
-			->find_all();
+			->or_where('sale_price', '=', $minprice);
 	}
 
 	/**
@@ -97,7 +96,7 @@ class Model_Oz_Product_Category extends ORM {
 	 *
 	 * @return nmixed
 	 */
-	public function find_dearest_products()
+	public function dearest_products()
 	{
 		if ( ! $this->loaded())
 			return $this->products;
@@ -108,8 +107,7 @@ class Model_Oz_Product_Category extends ORM {
 			->maxprice;
 
 		return $this->products
-			->where('price', '=', $maxprice)
-			->find_all();
+			->where('price', '=', $maxprice);
 	}
 
 }
