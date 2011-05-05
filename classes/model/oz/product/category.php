@@ -70,4 +70,46 @@ class Model_Oz_Product_Category extends ORM {
 		return $tree;
 	}
 
+	/**
+	 * Find all of the cheapest products (sale_price takes preference over price
+	 * in this case) within the category.
+	 *
+	 * @return mixed
+	 */
+	public function find_cheapest_products()
+	{
+		if ( ! $this->loaded())
+			return $this->products;
+
+		$minprice = $this->products
+			->select(array(Db::expr('LEAST(MIN(price), MIN(sale_price))'), 'minprice'))
+			->find()
+			->minprice;
+
+		return $this->products
+			->where('price', '=', $minprice)
+			->or_where('sale_price', '=', $minprice)
+			->find_all();
+	}
+
+	/**
+	 * Finds the most expensive (dearest) products within the category.
+	 *
+	 * @return nmixed
+	 */
+	public function find_dearest_products()
+	{
+		if ( ! $this->loaded())
+			return $this->products;
+
+		$maxprice = $this->products
+			->select(array(Db::expr('MAX(price)'), 'maxprice'))
+			->find()
+			->maxprice;
+
+		return $this->products
+			->where('price', '=', $maxprice)
+			->find_all();
+	}
+
 }
