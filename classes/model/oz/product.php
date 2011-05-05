@@ -10,12 +10,15 @@
 class Model_Oz_Product extends ORM {
 
 	protected $_has_many = array(
-		'photos'     => array(
-			'model' => 'product_photo'
-		),
 		'categories' => array(
 			'model'   => 'product_category',
 			'through' => 'product_categories_products'
+		),
+		'photos'     => array(
+			'model' => 'product_photo'
+		),
+		'reviews'    => array(
+			'model' => 'product_review'
 		),
 	);
 
