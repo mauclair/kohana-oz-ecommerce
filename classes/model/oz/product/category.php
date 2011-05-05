@@ -25,7 +25,6 @@ class Model_Oz_Product_Category extends ORM {
 			'order'     => array(
 				array('not_empty'),
 				array('digit'),
-				array('gte', array(':value', 0))
 			),
 			'parent_id' => array(
 				array('digit'),
