@@ -26,6 +26,7 @@ CREATE TABLE `order_products` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `order_id` int(10) unsigned NOT NULL,
   `product_id` int(10) unsigned NOT NULL,
+  `variation_id` int(10) unsigned DEFAULT NULL,
   `quantity` mediumint(8) unsigned NOT NULL,
   `price` decimal(8,2) unsigned NOT NULL,
   PRIMARY KEY (`id`),
@@ -97,6 +98,15 @@ CREATE TABLE `product_specifications` (
   KEY `product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
+DROP TABLE IF EXISTS `product_variations`;
+CREATE TABLE `product_variations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` int(10) unsigned NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_id` (`product_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+
 ALTER TABLE `order_products`
   ADD CONSTRAINT `order_products_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE;
 
@@ -115,3 +125,6 @@ ALTER TABLE `product_reviews`
 
 ALTER TABLE `product_specifications`
   ADD CONSTRAINT `product_specifications_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+
+ALTER TABLE `product_variations`
+  ADD CONSTRAINT `product_variations_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;

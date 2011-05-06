@@ -23,6 +23,9 @@ class Model_Oz_Product extends ORM {
 		'specifications' => array(
 			'model' => 'product_specification'
 		),
+		'variations'     => array(
+			'model' => 'product_variation'
+		),
 	);
 
 	public function rules()
