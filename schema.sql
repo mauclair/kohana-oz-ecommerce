@@ -42,6 +42,7 @@ CREATE TABLE `products` (
   `sale_price` decimal(8,2) unsigned DEFAULT NULL,
   `quantity` mediumint(8) unsigned DEFAULT NULL,
   `primary_photo_id` int(10) unsigned DEFAULT NULL,
+  `avg_review_rating` decimal(3,1) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `quantity` (`quantity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
@@ -87,6 +88,33 @@ CREATE TABLE `product_reviews` (
   PRIMARY KEY (`id`),
   KEY `product_id` (`product_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+DROP TRIGGER IF EXISTS `avg_review_rating_ins`;
+DELIMITER //
+CREATE TRIGGER `avg_review_rating_ins` AFTER INSERT ON `product_reviews`
+ FOR EACH ROW BEGIN
+    SELECT AVG(rating) INTO @avg_rating FROM product_reviews WHERE product_id = NEW.product_id;
+    UPDATE products SET avg_review_rating = @avg_rating WHERE id = NEW.product_id;
+END
+//
+DELIMITER ;
+DROP TRIGGER IF EXISTS `avg_review_rating_up`;
+DELIMITER //
+CREATE TRIGGER `avg_review_rating_up` AFTER UPDATE ON `product_reviews`
+ FOR EACH ROW BEGIN
+    SELECT AVG(rating) INTO @avg_rating FROM product_reviews WHERE product_id = NEW.product_id;
+    UPDATE products SET avg_review_rating = @avg_rating WHERE id = NEW.product_id;
+END
+//
+DELIMITER ;
+DROP TRIGGER IF EXISTS `avg_review_rating_del`;
+DELIMITER //
+CREATE TRIGGER `avg_review_rating_del` AFTER DELETE ON `product_reviews`
+ FOR EACH ROW BEGIN
+    SELECT AVG(rating) INTO @avg_rating FROM product_reviews WHERE product_id = OLD.product_id;
+    UPDATE products SET avg_review_rating = @avg_rating WHERE id = OLD.product_id;
+END
+//
+DELIMITER ;
 
 DROP TABLE IF EXISTS `product_specifications`;
 CREATE TABLE `product_specifications` (
