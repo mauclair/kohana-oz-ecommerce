@@ -72,6 +72,21 @@ class Model_Oz_Product extends ORM {
 	}
 
 	/**
+	 * Returns the average review rating value
+	 *
+	 * @return float
+	 */
+	public function average_review_rating()
+	{
+		$result = Db::select(array(Db::expr('AVG(rating)'), 'avgrating'))
+			->from('product_reviews')
+			->where('product_id', '=', $this->id)
+			->execute();
+
+		return round($result->get('avgrating'), 2);
+	}
+
+	/**
 	 * Overload the save method to set the sale_price to NULL if an empty
 	 * or 0.00 value was given
 	 *
