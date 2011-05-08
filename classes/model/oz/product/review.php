@@ -25,6 +25,9 @@ class Model_Oz_Product_Review extends ORM {
 				array('not_empty'),
 				array('range', array(':value', 0, 10))
 			),
+			'summary'    => array(
+				array('not_empty')
+			),
 			'body'       => array(
 				array('not_empty')
 			),
