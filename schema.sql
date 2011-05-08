@@ -82,12 +82,15 @@ DROP TABLE IF EXISTS `product_reviews`;
 CREATE TABLE `product_reviews` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `product_id` int(10) unsigned NOT NULL,
+  `date` datetime NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `rating` tinyint(2) unsigned NOT NULL,
   `summary` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `body` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `product_id` (`product_id`)
+  KEY `product_id` (`product_id`),
+  KEY `date` (`date`),
+  KEY `rating` (`rating`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 DROP TRIGGER IF EXISTS `avg_review_rating_ins`;
 DELIMITER //

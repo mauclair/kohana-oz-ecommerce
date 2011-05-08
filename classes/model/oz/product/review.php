@@ -34,4 +34,19 @@ class Model_Oz_Product_Review extends ORM {
 		);
 	}
 
+	/**
+	 * Override the save() method to provide some default value for columns
+	 *
+	 * @return mixed
+	 */
+	public function save(Validation $validation = NULL)
+	{
+		if ( ! $this->loaded())
+		{
+			$this->date = Db::expr('UTC_TIMESTAMP()');
+		}
+
+		return parent::save($validation);
+	}
+
 }
