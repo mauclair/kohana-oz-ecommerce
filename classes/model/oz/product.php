@@ -62,6 +62,18 @@ class Model_Oz_Product extends ORM {
 	}
 
 	/**
+	 * Finds all uncategorised products
+	 *
+	 * @return Model_Oz_Product
+	 */
+	public function uncategorised()
+	{
+		return $this->join(array('product_categories_products', 'pivot'), 'LEFT')
+			->on('products.id', '=', 'pivot.product_id')
+			->where('pivot.id', 'IS', NULL);
+	}
+
+	/**
 	 * Return the primary product photo
 	 *
 	 * @return Model_Oz_Product_Photo
