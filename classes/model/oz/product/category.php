@@ -61,13 +61,8 @@ class Model_Oz_Product_Category extends ORM {
 			if ($stop == $category->id)
 				continue;
 
-			$tree[] = array(
-				'id'          => $category->id,
-				'name'        => $category->name,
-				'description' => $category->description,
-				'order'       => (int) $category->order,
-				'parent_id'   => (int) $category->parent_id,
-				'children'    => $this->full_tree($category->id, $stop),
+			$tree[] = $category->as_array() + array(
+				'children' => $this->full_tree($category->id, $stop)
 			);
 		}
 		return $tree;
