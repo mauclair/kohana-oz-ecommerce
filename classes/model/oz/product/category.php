@@ -45,9 +45,10 @@ class Model_Oz_Product_Category extends ORM {
 	 * Returns a full tree of nested product categories started at a category
 	 *
 	 * @param int $start
+	 * @param int $stop do not return this category ID
 	 * @return array
 	 */
-	public function full_tree($start=NULL)
+	public function full_tree($start=NULL, $stop=NULL)
 	{
 		$tree = array();
 
@@ -57,13 +58,16 @@ class Model_Oz_Product_Category extends ORM {
 
 		foreach ($product_categories as $category)
 		{
+			if ($stop == $category->id)
+				continue;
+
 			$tree[] = array(
 				'id'          => $category->id,
 				'name'        => $category->name,
 				'description' => $category->description,
 				'order'       => (int) $category->order,
 				'parent_id'   => (int) $category->parent_id,
-				'children'    => $this->full_tree($category->id),
+				'children'    => $this->full_tree($category->id, $stop),
 			);
 		}
 		return $tree;
