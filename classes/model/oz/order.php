@@ -95,6 +95,30 @@ class Model_Oz_Order extends ORM {
 	}
 
 	/**
+	 * Allows you to update the "payment_method" of an existing order
+	 *
+	 * @param string $method
+	 * @return mixed
+	 */
+	public function update_payment_method($method)
+	{
+		$this->payment_method = $method;
+		return parent::save();
+	}
+
+	/**
+	 * Allows you to update the "notes" of an existing order
+	 *
+	 * @param string $notes
+	 * @return mixed
+	 */
+	public function update_notes($notes)
+	{
+		$this->notes = $notes;
+		return parent::save();
+	}
+
+	/**
 	 * Override the save() method to provide some default value for columns
 	 *
 	 * @return mixed
