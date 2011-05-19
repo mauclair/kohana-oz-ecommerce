@@ -21,6 +21,7 @@ CREATE TABLE `orders` (
   `shipping_addr2` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `shipping_addr3` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `shipping_postal_code` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `notes` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `status` (`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
