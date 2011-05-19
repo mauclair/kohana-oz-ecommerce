@@ -7,6 +7,7 @@ CREATE TABLE `orders` (
   `status` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'new',
   `shipping_price` decimal(6,2) unsigned NOT NULL DEFAULT '0.00',
   `vat_rate` decimal(4,2) unsigned NOT NULL DEFAULT '0.00',
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `billing_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `billing_telephone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `billing_addr1` varchar(50) COLLATE utf8_unicode_ci NOT NULL,

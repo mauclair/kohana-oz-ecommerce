@@ -26,6 +26,7 @@ class Model_Oz_Order extends ORM {
 				array('numeric'),
 				array('gte', array(':value', 0))
 			),
+			'email'                => array(array('email')),
 			'billing_name'         => array(array('not_empty')),
 			'billing_telephone'    => array(
 				array('not_empty'),
