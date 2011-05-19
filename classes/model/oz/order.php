@@ -27,12 +27,20 @@ class Model_Oz_Order extends ORM {
 				array('gte', array(':value', 0))
 			),
 			'billing_name'         => array(array('not_empty')),
+			'billing_telephone'    => array(
+				array('not_empty'),
+				array('phone'),
+			),
 			'billing_addr1'        => array(array('not_empty')),
 			'billing_postal_code'  => array(
 				array('not_empty'),
 				array('postal_code_uk'),
 			),
 			'shipping_name'        => array(array('not_empty')),
+			'shipping_telephone'   => array(
+				array('not_empty'),
+				array('phone'),
+			),
 			'shipping_addr1'       => array(array('not_empty')),
 			'shipping_postal_code' => array(
 				array('not_empty'),
