@@ -69,6 +69,29 @@ class Model_Oz_Product_Category extends ORM {
 	}
 
 	/**
+	 * Gets the reverse tree of categories, selecting the first parent. Useful
+	 * when need to generate breadcrumb type feature
+	 *
+	 * @param int $start
+	 * @return array
+	 */
+	public function reverse_tree($start)
+	{
+		$tree = array();
+
+		$category = ORM::factory('product_category', $start);
+		$tree[] = $category;
+
+		while ($category->parent_id)
+		{
+			$category = ORM::factory('product_category', $category->parent_id);
+			$tree[] = $category;
+		}
+
+		return array_reverse($tree);
+	}
+
+	/**
 	 * Find all of the cheapest products (sale_price takes preference over price
 	 * in this case) within the category.
 	 *
