@@ -54,6 +54,7 @@ class Model_Oz_Product_Category extends ORM {
 
 		$product_categories = ORM::factory('product_category')
 			->where('parent_id', '=', $start)
+			->order_by('order', 'ASC')
 			->find_all();
 
 		foreach ($product_categories as $category)
