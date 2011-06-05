@@ -4,7 +4,8 @@
  *
  * @package openzula/kohana-oz-ecommerce
  * @author Alex Cartwright <alex@openzula.org>
- * @copyright (C) 2011 OpenZula
+ * @copyright Copyright (c) 2011, OpenZula
+ * @license http://openzula.org/license-bsd-3c BSD 3-Clause License
  */
 
 class Model_Oz_Order extends ORM {
