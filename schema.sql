@@ -3,6 +3,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) unsigned DEFAULT NULL,
   `date` datetime NOT NULL,
   `status` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'new',
   `payment_method` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -23,7 +24,8 @@ CREATE TABLE `orders` (
   `shipping_postal_code` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `notes` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `status` (`status`)
+  KEY `status` (`status`),
+  KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `order_products`;
