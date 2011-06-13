@@ -38,6 +38,11 @@ class Model_Oz_Order extends ORM {
 				array('not_empty'),
 				array('postal_code_uk'),
 			),
+			'billing_country'      => array(
+				array('not_empty'),
+				array('alpha'),
+				array('exact_length', array(':value', 2)),
+			),
 			'shipping_name'        => array(array('not_empty')),
 			'shipping_telephone'   => array(
 				array('not_empty'),
@@ -47,6 +52,11 @@ class Model_Oz_Order extends ORM {
 			'shipping_postal_code' => array(
 				array('not_empty'),
 				array('postal_code_uk'),
+			),
+			'shipping_country'     => array(
+				array('not_empty'),
+				array('alpha'),
+				array('exact_length', array(':value', 2)),
 			),
 		);
 	}
