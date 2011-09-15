@@ -38,10 +38,7 @@ class Model_Oz_Order extends ORM {
 			),
 			'billing_addr1'        => array(array('not_empty')),
 			'billing_addr3'        => array(array('not_empty')),
-			'billing_postal_code'  => array(
-				array('not_empty'),
-				array('postal_code_uk'),
-			),
+			'billing_postal_code'  => array(array('not_empty')),
 			'billing_country'      => array(
 				array('not_empty'),
 				array('alpha'),
@@ -54,10 +51,7 @@ class Model_Oz_Order extends ORM {
 			),
 			'shipping_addr1'       => array(array('not_empty')),
 			'shipping_addr3'       => array(array('not_empty')),
-			'shipping_postal_code' => array(
-				array('not_empty'),
-				array('postal_code_uk'),
-			),
+			'shipping_postal_code' => array(array('not_empty')),
 			'shipping_country'     => array(
 				array('not_empty'),
 				array('alpha'),
