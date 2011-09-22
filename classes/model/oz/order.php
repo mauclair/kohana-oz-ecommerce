@@ -31,6 +31,10 @@ class Model_Oz_Order extends ORM {
 				array('not_empty'),
 				array('email'),
 			),
+			'discount'             => array(
+				array('numeric'),
+				array('gte', array(':value', 0))
+			),
 			'billing_name'         => array(array('not_empty')),
 			'billing_telephone'    => array(
 				array('not_empty'),
@@ -80,16 +84,26 @@ class Model_Oz_Order extends ORM {
 	 * Calculates the total price (excluding VAT) of all products within the
 	 * order and the shipping cost, rounded to 2 decimal places.
 	 *
+	 * If $apply_discount is true, then the value of the 'discount' property
+	 * shall be deducted from the above result.
+	 *
+	 * @param bool $apply_discount
 	 * @return float
 	 */
-	public function amount()
+	public function amount($apply_discount=TRUE)
 	{
 		$amount = $this->shipping_price;
 		foreach ($this->products->find_all() as $product)
 		{
 			$amount += $product->quantity * $product->price;
 		}
-		return round($amount, 2);
+
+		if ($apply_discount)
+		{
+			$amount -= $this->discount;
+		}
+
+		return round(max(0, $amount), 2);
 	}
 
 	/**

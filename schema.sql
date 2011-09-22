@@ -9,6 +9,7 @@ CREATE TABLE `orders` (
   `payment_method` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `shipping_price` decimal(6,2) unsigned NOT NULL DEFAULT '0.00',
   `vat_rate` decimal(4,2) unsigned NOT NULL DEFAULT '0.00',
+  `discount` decimal(6,2) unsigned DEFAULT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `billing_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `billing_telephone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
