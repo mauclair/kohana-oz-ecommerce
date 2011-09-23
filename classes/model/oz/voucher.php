@@ -14,7 +14,8 @@ class Model_Oz_Voucher extends ORM {
 	{
 		return array(
 			'code' => array(
-				array('max_length', array(':value', 16))
+				array('max_length', array(':value', 16)),
+				array(array($this, 'code_available'), array(':validation', ':field'))
 			),
 			'start_date' => array(array('date')),
 			'end_date'   => array(array('date')),
@@ -26,9 +27,32 @@ class Model_Oz_Voucher extends ORM {
 	}
 
 	/**
+	 * Triggers a validation error if the given code is not unique.
+	 * Validation callback.
+	 *
+	 * @param	Validation	Validation object
+	 * @param	string		Field name
+	 * @return	void
+	 */
+	public function code_available(Validation $validation, $field)
+	{
+		$exists = (bool) DB::select(array('COUNT("*")', 'total_count'))
+			->from($this->_table_name)
+			->where('code', '=', $validation[$field])
+			->where($this->_primary_key, '!=', $this->pk())
+			->execute()
+			->get('total_count');
+
+		if ($exists)
+		{
+			$validation->error($field, 'code_available', array($validation[$field]));
+		}
+	}
+
+	/**
 	 * Returns bool TRUE if the voucher is currently valid
 	 *
-	 * @return bool
+	 * @return	bool
 	 */
 	public function is_valid()
 	{
