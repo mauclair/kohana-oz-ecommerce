@@ -62,4 +62,26 @@ class Model_Oz_Voucher extends ORM {
 		return TRUE;
 	}
 
+	/**
+	 * Override the save() method to convert the dates to MySQL DATETIME format
+	 *
+	 * @return mixed
+	 */
+	public function save(Validation $validation = NULL)
+	{
+		try
+		{
+			$this->start_date = Date::formatted_time($this->start_date, 'Y-m-d H:i:s');
+		}
+		catch(Exception $e) {}
+
+		try
+		{
+			$this->end_date = Date::formatted_time($this->end_date, 'Y-m-d H:i:s');
+		}
+		catch(Exception $e) {}
+
+		return parent::save($validation);
+	}
+
 }
