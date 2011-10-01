@@ -145,8 +145,10 @@ CREATE TABLE `product_variations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `product_id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `quantity` mediumint(8) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `product_id` (`product_id`)
+  KEY `product_id` (`product_id`),
+  KEY `quantity` (`quantity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `vouchers`;

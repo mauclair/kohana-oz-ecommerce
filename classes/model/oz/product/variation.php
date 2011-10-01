@@ -22,7 +22,13 @@ class Model_Oz_Product_Variation extends ORM {
 				array('digit'),
 				array('gt', array(':value', 0))
 			),
-			'name'       => array(array('not_empty')),
+			'name'       => array(
+				array('not_empty')
+			),
+			'quantity'   => array(
+				array('not_empty'),
+				array('digit'),
+			),
 		);
 	}
 
