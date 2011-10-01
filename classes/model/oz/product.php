@@ -85,6 +85,30 @@ class Model_Oz_Product extends ORM {
 	}
 
 	/**
+	 * If this product has 1 or more variations, then the sum of the 'quantity'
+	 * property shall be returned for those variations. When no variations are
+	 * present, then simply return the 'quantity' property of this object.
+	 *
+	 * @return int
+	 */
+	public function available_quantity()
+	{
+		if ($this->loaded())
+		{
+			$quantity = DB::select(array('SUM("quantity")', 'quantity_sum'))
+				->from('product_variations')
+				->where('product_id', '=', $this->pk())
+				->execute()
+				->get('quantity_sum');
+
+			if (NULL != $quantity)
+				return $quantity;
+		}
+
+		return $this->quantity;
+	}
+
+	/**
 	 * Overload the save method to set the sale_price to NULL if an empty
 	 * or 0.00 value was given
 	 *
