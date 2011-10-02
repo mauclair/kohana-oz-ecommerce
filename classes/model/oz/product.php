@@ -45,7 +45,6 @@ class Model_Oz_Product extends ORM {
 				array('gte', array(':value', 0))
 			),
 			'quantity'         => array(
-				array('not_empty'),
 				array('digit'),
 			),
 			'primary_photo_id' => array(
