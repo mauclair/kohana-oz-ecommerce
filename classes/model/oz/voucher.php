@@ -15,13 +15,17 @@ class Model_Oz_Voucher extends ORM {
 		return array(
 			'code' => array(
 				array('max_length', array(':value', 16)),
-				array(array($this, 'code_available'), array(':validation', ':field'))
+				array(array($this, 'code_available'), array(':validation', ':field')),
 			),
-			'start_date' => array(array('date')),
-			'end_date'   => array(array('date')),
+			'start_date' => array(
+				array('date'),
+			),
+			'end_date' => array(
+				array('date'),
+			),
 			'percentage' => array(
 				array('digit'),
-				array('range', array(':value', 1, 99))
+				array('range', array(':value', 1, 99)),
 			)
 		);
 	}

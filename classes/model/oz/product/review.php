@@ -11,7 +11,7 @@
 class Model_Oz_Product_Review extends ORM {
 
 	protected $_belongs_to = array(
-		'product' => array()
+		'product' => array(),
 	);
 
 	public function rules()
@@ -20,17 +20,17 @@ class Model_Oz_Product_Review extends ORM {
 			'product_id' => array(
 				array('not_empty'),
 				array('digit'),
-				array('gt', array(':value', 0))
+				array('gt', array(':value', 0)),
 			),
-			'rating'     => array(
+			'rating' => array(
 				array('not_empty'),
-				array('range', array(':value', 0, 10))
+				array('range', array(':value', 0, 10)),
 			),
-			'summary'    => array(
-				array('not_empty')
+			'summary' => array(
+				array('not_empty'),
 			),
-			'body'       => array(
-				array('not_empty')
+			'body' => array(
+				array('not_empty'),
 			),
 		);
 	}

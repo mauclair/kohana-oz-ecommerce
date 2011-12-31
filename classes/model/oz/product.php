@@ -11,45 +11,49 @@
 class Model_Oz_Product extends ORM {
 
 	protected $_has_many = array(
-		'categories'     => array(
+		'categories' => array(
 			'model'   => 'product_category',
-			'through' => 'product_categories_products'
+			'through' => 'product_categories_products',
 		),
-		'photos'         => array(
-			'model' => 'product_photo'
+		'photos' => array(
+			'model' => 'product_photo',
 		),
-		'reviews'        => array(
-			'model' => 'product_review'
+		'reviews' => array(
+			'model' => 'product_review',
 		),
 		'specifications' => array(
-			'model' => 'product_specification'
+			'model' => 'product_specification',
 		),
-		'variations'     => array(
-			'model' => 'product_variation'
+		'variations' => array(
+			'model' => 'product_variation',
 		),
 	);
 
 	public function rules()
 	{
 		return array(
-			'name'             => array(array('not_empty')),
-			'description'      => array(array('not_empty')),
-			'price'            => array(
+			'name' => array(
+				array('not_empty'),
+			),
+			'description' => array(
+				array('not_empty'),
+			),
+			'price' => array(
 				array('not_empty'),
 				array('numeric'),
-				array('gte', array(':value', 0))
+				array('gte', array(':value', 0)),
 			),
-			'sale_price'       => array(
+			'sale_price' => array(
 				array('numeric'),
 				array('lt', array(':value', $this->price)),
-				array('gte', array(':value', 0))
+				array('gte', array(':value', 0)),
 			),
-			'quantity'         => array(
+			'quantity' => array(
 				array('digit'),
 			),
 			'primary_photo_id' => array(
 				array('digit'),
-				array('gt', array(':value', 0))
+				array('gt', array(':value', 0)),
 			),
 		);
 	}

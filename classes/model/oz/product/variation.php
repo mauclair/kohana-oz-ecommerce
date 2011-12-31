@@ -11,7 +11,7 @@
 class Model_Oz_Product_Variation extends ORM {
 
 	protected $_belongs_to = array(
-		'product' => array()
+		'product' => array(),
 	);
 
 	public function rules()
@@ -20,12 +20,12 @@ class Model_Oz_Product_Variation extends ORM {
 			'product_id' => array(
 				array('not_empty'),
 				array('digit'),
-				array('gt', array(':value', 0))
+				array('gt', array(':value', 0)),
 			),
-			'name'       => array(
-				array('not_empty')
+			'name' => array(
+				array('not_empty'),
 			),
-			'quantity'   => array(
+			'quantity' => array(
 				array('not_empty'),
 				array('digit'),
 			),

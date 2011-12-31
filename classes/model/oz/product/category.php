@@ -20,16 +20,16 @@ class Model_Oz_Product_Category extends ORM {
 	public function rules()
 	{
 		return array(
-			'name'      => array(
-				array('not_empty')
+			'name' => array(
+				array('not_empty'),
 			),
-			'order'     => array(
+			'order' => array(
 				array('not_empty'),
 				array('digit'),
 			),
 			'parent_id' => array(
 				array('digit'),
-				array('gt', array(':value', 0))
+				array('gt', array(':value', 0)),
 			),
 		);
 	}

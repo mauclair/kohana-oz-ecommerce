@@ -11,34 +11,34 @@
 class Model_Oz_Order_Product extends ORM {
 
 	protected $_belongs_to = array(
-		'order' => array()
+		'order' => array(),
 	);
 
 	public function rules()
 	{
 		return array(
-			'order_id'     => array(
+			'order_id' => array(
 				array('not_empty'),
 				array('digit'),
-				array('gt', array(':value', 0))
+				array('gt', array(':value', 0)),
 			),
-			'product_id'   => array(
+			'product_id' => array(
 				array('not_empty'),
 				array('digit'),
-				array('gt', array(':value', 0))
+				array('gt', array(':value', 0)),
 			),
 			'variation_id' => array(
-				array('digit')
+				array('digit'),
 			),
-			'quantity'     => array(
+			'quantity' => array(
 				array('not_empty'),
 				array('digit'),
-				array('gt', array(':value', 0))
+				array('gt', array(':value', 0)),
 			),
-			'price'        => array(
+			'price' => array(
 				array('not_empty'),
 				array('numeric'),
-				array('gte', array(':value', 0))
+				array('gte', array(':value', 0)),
 			),
 		);
 	}

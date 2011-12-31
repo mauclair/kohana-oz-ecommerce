@@ -12,51 +12,67 @@ class Model_Oz_Order extends ORM {
 
 	protected $_has_many = array(
 		'products' => array(
-			'model' => 'order_product'
+			'model' => 'order_product',
 		),
 	);
 
 	public function rules()
 	{
 		return array(
-			'shipping_price'       => array(
+			'shipping_price' => array(
 				array('numeric'),
-				array('gte', array(':value', 0))
+				array('gte', array(':value', 0)),
 			),
-			'vat_rate'             => array(
+			'vat_rate' => array(
 				array('numeric'),
-				array('gte', array(':value', 0))
+				array('gte', array(':value', 0)),
 			),
-			'email'                => array(
+			'email' => array(
 				array('not_empty'),
 				array('email'),
 			),
-			'discount'             => array(
+			'discount' => array(
 				array('numeric'),
-				array('gte', array(':value', 0))
+				array('gte', array(':value', 0)),
 			),
-			'billing_name'         => array(array('not_empty')),
-			'billing_telephone'    => array(
+			'billing_name' => array(
+				array('not_empty'),
+			),
+			'billing_telephone' => array(
 				array('not_empty'),
 				array('phone'),
 			),
-			'billing_addr1'        => array(array('not_empty')),
-			'billing_addr3'        => array(array('not_empty')),
-			'billing_postal_code'  => array(array('not_empty')),
-			'billing_country'      => array(
+			'billing_addr1' => array(
+				array('not_empty'),
+			),
+			'billing_addr3' => array(
+				array('not_empty'),
+			),
+			'billing_postal_code' => array(
+				array('not_empty'),
+			),
+			'billing_country' => array(
 				array('not_empty'),
 				array('alpha'),
 				array('exact_length', array(':value', 2)),
 			),
-			'shipping_name'        => array(array('not_empty')),
-			'shipping_telephone'   => array(
+			'shipping_name' => array(
+				array('not_empty'),
+			),
+			'shipping_telephone' => array(
 				array('not_empty'),
 				array('phone'),
 			),
-			'shipping_addr1'       => array(array('not_empty')),
-			'shipping_addr3'       => array(array('not_empty')),
-			'shipping_postal_code' => array(array('not_empty')),
-			'shipping_country'     => array(
+			'shipping_addr1' => array(
+				array('not_empty'),
+			),
+			'shipping_addr3' => array(
+				array('not_empty'),
+			),
+			'shipping_postal_code' => array(
+				array('not_empty'),
+			),
+			'shipping_country' => array(
 				array('not_empty'),
 				array('alpha'),
 				array('exact_length', array(':value', 2)),
