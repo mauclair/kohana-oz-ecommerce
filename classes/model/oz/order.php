@@ -37,6 +37,7 @@ class Model_Oz_Order extends ORM {
 			),
 			'billing_name' => array(
 				array('not_empty'),
+				array(array($this, 'full_name')),
 			),
 			'billing_telephone' => array(
 				array('not_empty'),
@@ -58,6 +59,7 @@ class Model_Oz_Order extends ORM {
 			),
 			'shipping_name' => array(
 				array('not_empty'),
+				array(array($this, 'full_name')),
 			),
 			'shipping_telephone' => array(
 				array('not_empty'),
@@ -94,6 +96,18 @@ class Model_Oz_Order extends ORM {
 			'shipping_addr3'       => array(array('trim')),
 			'shipping_postal_code' => array(array('trim')),
 		);
+	}
+
+	/**
+	 * Validation callback to ensure shipping/billing value has a first
+	 * name and surname.
+	 *
+	 * @param	string	$value
+	 * @return	bool
+	 */
+	public function full_name($value)
+	{
+		return strpos(trim($value), ' ') !== FALSE;
 	}
 
 	/**
