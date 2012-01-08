@@ -7,7 +7,7 @@
  * @copyright  Copyright (c) 2011, OpenZula
  * @license    http://openzula.org/license-bsd-3c BSD 3-Clause License
  */
-class Model_Oz_Product_Variation extends ORM {
+abstract class Model_Oz_Product_Variation extends ORM {
 
 	protected $_belongs_to = array(
 		'product' => array(),

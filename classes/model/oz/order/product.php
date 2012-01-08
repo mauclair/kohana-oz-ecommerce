@@ -7,7 +7,7 @@
  * @copyright  Copyright (c) 2011, OpenZula
  * @license    http://openzula.org/license-bsd-3c BSD 3-Clause License
  */
-class Model_Oz_Order_Product extends ORM {
+abstract class Model_Oz_Order_Product extends ORM {
 
 	protected $_belongs_to = array(
 		'order' => array(),
