@@ -2,12 +2,11 @@
 /**
  * Vouchers model
  *
- * @package openzula/kohana-oz-ecommerce
- * @author Alex Cartwright <alex@openzula.org>
- * @copyright Copyright (c) 2011, OpenZula
- * @license http://openzula.org/license-bsd-3c BSD 3-Clause License
+ * @package    openzula/kohana-oz-ecommerce
+ * @author     Alex Cartwright <alex@openzula.org>
+ * @copyright  Copyright (c) 2011, OpenZula
+ * @license    http://openzula.org/license-bsd-3c BSD 3-Clause License
  */
-
 class Model_Oz_Voucher extends ORM {
 
 	public function rules()
@@ -34,9 +33,9 @@ class Model_Oz_Voucher extends ORM {
 	 * Triggers a validation error if the given code is not unique.
 	 * Validation callback.
 	 *
-	 * @param	Validation	Validation object
-	 * @param	string		Field name
-	 * @return	void
+	 * @param   Validation  Validation object
+	 * @param   string      Field name
+	 * @return  void
 	 */
 	public function code_available(Validation $validation, $field)
 	{
@@ -56,7 +55,7 @@ class Model_Oz_Voucher extends ORM {
 	/**
 	 * Returns bool TRUE if the voucher is currently valid
 	 *
-	 * @return	bool
+	 * @return  bool
 	 */
 	public function is_valid()
 	{
@@ -69,7 +68,8 @@ class Model_Oz_Voucher extends ORM {
 	/**
 	 * Override the save() method to convert the dates to MySQL DATETIME format
 	 *
-	 * @return mixed
+	 * @param   Validation  $validation
+	 * @return  mixed
 	 */
 	public function save(Validation $validation = NULL)
 	{

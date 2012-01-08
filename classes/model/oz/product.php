@@ -2,12 +2,11 @@
 /**
  * Product model
  *
- * @package openzula/kohana-oz-ecommerce
- * @author Alex Cartwright <alex@openzula.org>
- * @copyright Copyright (c) 2011, OpenZula
- * @license http://openzula.org/license-bsd-3c BSD 3-Clause License
+ * @package    openzula/kohana-oz-ecommerce
+ * @author     Alex Cartwright <alex@openzula.org>
+ * @copyright  Copyright (c) 2011, OpenZula
+ * @license    http://openzula.org/license-bsd-3c BSD 3-Clause License
  */
-
 class Model_Oz_Product extends ORM {
 
 	protected $_has_many = array(
@@ -68,7 +67,7 @@ class Model_Oz_Product extends ORM {
 	/**
 	 * Finds all uncategorised products
 	 *
-	 * @return Model_Oz_Product
+	 * @return  Model_Oz_Product
 	 */
 	public function uncategorised()
 	{
@@ -80,7 +79,7 @@ class Model_Oz_Product extends ORM {
 	/**
 	 * Return the primary product photo
 	 *
-	 * @return Model_Oz_Product_Photo
+	 * @return  Model_Oz_Product_Photo
 	 */
 	public function primary_photo()
 	{
@@ -92,7 +91,7 @@ class Model_Oz_Product extends ORM {
 	 * property shall be returned for those variations. When no variations are
 	 * present, then simply return the 'quantity' property of this object.
 	 *
-	 * @return int
+	 * @return  int
 	 */
 	public function available_quantity()
 	{
@@ -115,7 +114,7 @@ class Model_Oz_Product extends ORM {
 	 * Overload the save method to set the sale_price to NULL if an empty
 	 * or 0.00 value was given
 	 *
-	 * @return mixed
+	 * @return  mixed
 	 */
 	public function save(Validation $validation=NULL)
 	{
@@ -129,7 +128,7 @@ class Model_Oz_Product extends ORM {
 	/**
 	 * Overload the delete method to remove all photo file & directory
 	 *
-	 * @return mixed
+	 * @return  mixed
 	 */
 	public function delete()
 	{

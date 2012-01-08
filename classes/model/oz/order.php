@@ -2,12 +2,11 @@
 /**
  * Orders model
  *
- * @package openzula/kohana-oz-ecommerce
- * @author Alex Cartwright <alex@openzula.org>
- * @copyright Copyright (c) 2011, OpenZula
- * @license http://openzula.org/license-bsd-3c BSD 3-Clause License
+ * @package    openzula/kohana-oz-ecommerce
+ * @author     Alex Cartwright <alex@openzula.org>
+ * @copyright  Copyright (c) 2011, OpenZula
+ * @license    http://openzula.org/license-bsd-3c BSD 3-Clause License
  */
-
 class Model_Oz_Order extends ORM {
 
 	protected $_has_many = array(
@@ -102,8 +101,8 @@ class Model_Oz_Order extends ORM {
 	 * Validation callback to ensure shipping/billing value has a first
 	 * name and surname.
 	 *
-	 * @param	string	$value
-	 * @return	bool
+	 * @param   string  $value
+	 * @return  bool
 	 */
 	public function full_name($value)
 	{
@@ -117,10 +116,10 @@ class Model_Oz_Order extends ORM {
 	 * If $apply_discount is true, then the value of the 'discount' property
 	 * shall be deducted from the above result.
 	 *
-	 * @param bool $apply_discount
-	 * @return float
+	 * @param   bool  $apply_discount
+	 * @return  float
 	 */
-	public function amount($apply_discount=TRUE)
+	public function amount($apply_discount = TRUE)
 	{
 		$amount = $this->shipping_price;
 		foreach ($this->products->find_all() as $product)
@@ -139,8 +138,8 @@ class Model_Oz_Order extends ORM {
 	/**
 	 * Allows you to update the "status" of an existing order
 	 *
-	 * @param string $status
-	 * @return mixed
+	 * @param   string  $status
+	 * @return  mixed
 	 */
 	public function update_status($status)
 	{
@@ -151,8 +150,8 @@ class Model_Oz_Order extends ORM {
 	/**
 	 * Allows you to update the "payment_method" of an existing order
 	 *
-	 * @param string $method
-	 * @return mixed
+	 * @param   string  $method
+	 * @return  mixed
 	 */
 	public function update_payment_method($method)
 	{
@@ -163,8 +162,8 @@ class Model_Oz_Order extends ORM {
 	/**
 	 * Allows you to update the "notes" of an existing order
 	 *
-	 * @param string $notes
-	 * @return mixed
+	 * @param   string  $notes
+	 * @return  mixed
 	 */
 	public function update_notes($notes)
 	{
@@ -175,7 +174,7 @@ class Model_Oz_Order extends ORM {
 	/**
 	 * Override the save() method to provide some default value for columns
 	 *
-	 * @return mixed
+	 * @return  mixed
 	 */
 	public function save(Validation $validation = NULL)
 	{
@@ -190,7 +189,7 @@ class Model_Oz_Order extends ORM {
 	/**
 	 * Override the delete() method to prevent existing orders being deleted
 	 *
-	 * @return mixed
+	 * @return  mixed
 	 */
 	public function delete()
 	{

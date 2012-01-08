@@ -2,12 +2,11 @@
 /**
  * Product category model
  *
- * @package openzula/kohana-oz-ecommerce
- * @author Alex Cartwright <alex@openzula.org>
- * @copyright Copyright (c) 2011, OpenZula
- * @license http://openzula.org/license-bsd-3c BSD 3-Clause License
+ * @package    openzula/kohana-oz-ecommerce
+ * @author     Alex Cartwright <alex@openzula.org>
+ * @copyright  Copyright (c) 2011, OpenZula
+ * @license    http://openzula.org/license-bsd-3c BSD 3-Clause License
  */
-
 class Model_Oz_Product_Category extends ORM {
 
 	protected $_has_many = array(
@@ -45,11 +44,11 @@ class Model_Oz_Product_Category extends ORM {
 	/**
 	 * Returns a full tree of nested product categories started at a category
 	 *
-	 * @param int $start
-	 * @param int $stop do not return this category ID
-	 * @return array
+	 * @param   int   $start
+	 * @param   int   $stop   do not return this category ID
+	 * @return  array
 	 */
-	public function full_tree($start=NULL, $stop=NULL)
+	public function full_tree($start = NULL, $stop = NULL)
 	{
 		$tree = array();
 
@@ -74,8 +73,8 @@ class Model_Oz_Product_Category extends ORM {
 	 * Gets the reverse tree of categories, selecting the first parent. Useful
 	 * when need to generate breadcrumb type feature
 	 *
-	 * @param int $start
-	 * @return array
+	 * @param   int   $start
+	 * @return  array
 	 */
 	public function reverse_tree($start)
 	{
@@ -97,7 +96,7 @@ class Model_Oz_Product_Category extends ORM {
 	 * Find all of the cheapest products (sale_price takes preference over price
 	 * in this case) within the category.
 	 *
-	 * @return mixed
+	 * @return  mixed
 	 */
 	public function cheapest_products()
 	{
@@ -117,7 +116,7 @@ class Model_Oz_Product_Category extends ORM {
 	/**
 	 * Finds the most expensive (dearest) products within the category.
 	 *
-	 * @return nmixed
+	 * @return  mixed
 	 */
 	public function dearest_products()
 	{

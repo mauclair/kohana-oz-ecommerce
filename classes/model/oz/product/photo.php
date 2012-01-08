@@ -2,12 +2,11 @@
 /**
  * Product photo model
  *
- * @package openzula/kohana-oz-ecommerce
- * @author Alex Cartwright <alex@openzula.org>
- * @copyright Copyright (c) 2011, OpenZula
- * @license http://openzula.org/license-bsd-3c BSD 3-Clause License
+ * @package    openzula/kohana-oz-ecommerce
+ * @author     Alex Cartwright <alex@openzula.org>
+ * @copyright  Copyright (c) 2011, OpenZula
+ * @license    http://openzula.org/license-bsd-3c BSD 3-Clause License
  */
-
 class Model_Oz_Product_Photo extends ORM {
 
 	protected $_belongs_to = array(
@@ -32,7 +31,7 @@ class Model_Oz_Product_Photo extends ORM {
 	/**
 	 * Overload the delete method to remove the file
 	 *
-	 * @return mixed
+	 * @return  mixed
 	 */
 	public function delete()
 	{
