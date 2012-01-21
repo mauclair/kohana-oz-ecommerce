@@ -13,6 +13,16 @@ abstract class Model_Oz_Product_Review extends ORM {
 		'product' => array(),
 	);
 
+	protected $_table_columns = array(
+		'id'         => array('type' => 'int'),
+		'product_id' => array('type' => 'int'),
+		'date'       => array('type' => 'date'),
+		'name'       => array('type' => 'string'),
+		'rating'     => array('type' => 'int'),
+		'summary'    => array('type' => 'string'),
+		'body'       => array('type' => 'string'),
+	);
+
 	public function rules()
 	{
 		return array(

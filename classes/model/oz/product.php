@@ -28,6 +28,17 @@ abstract class Model_Oz_Product extends ORM {
 		),
 	);
 
+	protected $_table_columns = array(
+		'id'                => array('type' => 'int'),
+		'name'              => array('type' => 'string'),
+		'description'       => array('type' => 'string'),
+		'price'             => array('type' => 'float'),
+		'sale_price'        => array('type' => 'float'),
+		'quantity'          => array('type' => 'int'),
+		'primary_photo_id'  => array('type' => 'int'),
+		'avg_review_rating' => array('type' => 'float'),
+	);
+
 	public function rules()
 	{
 		return array(

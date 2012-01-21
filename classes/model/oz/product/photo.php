@@ -13,6 +13,12 @@ abstract class Model_Oz_Product_Photo extends ORM {
 		'product' => array(),
 	);
 
+	protected $_table_columns = array(
+		'id'         => array('type' => 'int'),
+		'product_id' => array('type' => 'int'),
+		'filename'   => array('type' => 'string'),
+	);
+
 	public function rules()
 	{
 		return array(

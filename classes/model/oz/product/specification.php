@@ -13,6 +13,13 @@ abstract class Model_Oz_Product_Specification extends ORM {
 		'product' => array(),
 	);
 
+	protected $_table_columns = array(
+		'id'         => array('type' => 'int'),
+		'product_id' => array('type' => 'int'),
+		'name'       => array('type' => 'string'),
+		'value'      => array('type' => 'string'),
+	);
+
 	public function rules()
 	{
 		return array(

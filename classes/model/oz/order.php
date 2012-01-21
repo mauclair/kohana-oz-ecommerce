@@ -15,6 +15,33 @@ abstract class Model_Oz_Order extends ORM {
 		),
 	);
 
+	protected $_table_columns = array(
+		'id'                   => array('type' => 'int'),
+		'user_id'              => array('type' => 'int'),
+		'date'                 => array('type' => 'date'),
+		'status'               => array('type' => 'string'),
+		'payment_method'       => array('type' => 'string'),
+		'shipping_price'       => array('type' => 'float'),
+		'vat_rate'             => array('type' => 'float'),
+		'discount'             => array('type' => 'float'),
+		'email'                => array('type' => 'string'),
+		'billing_name'         => array('type' => 'string'),
+		'billing_telephone'    => array('type' => 'string'),
+		'billing_addr1'        => array('type' => 'string'),
+		'billing_addr2'        => array('type' => 'string'),
+		'billing_addr3'        => array('type' => 'string'),
+		'billing_postal_code'  => array('type' => 'string'),
+		'billing_country'      => array('type' => 'string'),
+		'shipping_name'        => array('type' => 'string'),
+		'shipping_telephone'   => array('type' => 'string'),
+		'shipping_addr1'       => array('type' => 'string'),
+		'shipping_addr2'       => array('type' => 'string'),
+		'shipping_addr3'       => array('type' => 'string'),
+		'shipping_postal_code' => array('type' => 'string'),
+		'shipping_country'     => array('type' => 'string'),
+		'notes'                => array('type' => 'string'),
+	);
+
 	public function rules()
 	{
 		return array(

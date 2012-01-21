@@ -13,6 +13,13 @@ abstract class Model_Oz_Product_Variation extends ORM {
 		'product' => array(),
 	);
 
+	protected $_table_columns = array(
+		'id'         => array('type' => 'int'),
+		'product_id' => array('type' => 'int'),
+		'name'       => array('type' => 'string'),
+		'quantity'   => array('type' => 'int'),
+	);
+
 	public function rules()
 	{
 		return array(

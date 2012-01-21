@@ -9,6 +9,14 @@
  */
 abstract class Model_Oz_Voucher extends ORM {
 
+	protected $_table_columns = array(
+		'id'         => array('type' => 'int'),
+		'code'       => array('type' => 'string'),
+		'start_date' => array('type' => 'date'),
+		'end_date'   => array('type' => 'date'),
+		'percentage' => array('type' => 'int'),
+	);
+
 	public function rules()
 	{
 		return array(

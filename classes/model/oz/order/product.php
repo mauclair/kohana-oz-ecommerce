@@ -13,6 +13,15 @@ abstract class Model_Oz_Order_Product extends ORM {
 		'order' => array(),
 	);
 
+	protected $_table_columns = array(
+		'id'           => array('type' => 'int'),
+		'order_id'     => array('type' => 'int'),
+		'product_id'   => array('type' => 'int'),
+		'variation_id' => array('type' => 'int'),
+		'quantity'     => array('type' => 'int'),
+		'price'        => array('type' => 'float'),
+	);
+
 	public function rules()
 	{
 		return array(

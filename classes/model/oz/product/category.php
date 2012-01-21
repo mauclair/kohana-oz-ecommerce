@@ -16,6 +16,14 @@ abstract class Model_Oz_Product_Category extends ORM {
 		)
 	);
 
+	protected $_table_columns = array(
+		'id'          => array('type' => 'int'),
+		'name'        => array('type' => 'string'),
+		'description' => array('type' => 'string'),
+		'order'       => array('type' => 'int'),
+		'parent_id'   => array('type' => 'int'),
+	);
+
 	public function rules()
 	{
 		return array(
