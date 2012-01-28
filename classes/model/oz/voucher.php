@@ -4,7 +4,7 @@
  *
  * @package    openzula/kohana-oz-ecommerce
  * @author     Alex Cartwright <alex@openzula.org>
- * @copyright  Copyright (c) 2011, OpenZula
+ * @copyright  Copyright (c) 2011, 2012 OpenZula
  * @license    http://openzula.org/license-bsd-3c BSD 3-Clause License
  */
 abstract class Model_Oz_Voucher extends ORM {
