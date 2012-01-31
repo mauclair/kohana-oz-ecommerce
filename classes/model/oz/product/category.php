@@ -52,17 +52,18 @@ abstract class Model_Oz_Product_Category extends ORM {
 	/**
 	 * Returns a full tree of nested product categories started at a category
 	 *
-	 * @param   int   $start
-	 * @param   int   $stop   do not return this category ID
+	 * @param   int    $start
+	 * @param   int    $stop      do not return this category ID
+	 * @param   array  $order_by
 	 * @return  array
 	 */
-	public function full_tree($start = NULL, $stop = NULL)
+	public function full_tree($start = NULL, $stop = NULL, array $order_by = array('order', 'ASC'))
 	{
 		$tree = array();
 
 		$product_categories = ORM::factory('product_category')
 			->where('parent_id', '=', $start)
-			->order_by('order', 'ASC')
+			->order_by($order_by[0], $order_by[1])
 			->find_all();
 
 		foreach ($product_categories as $category)
@@ -71,7 +72,7 @@ abstract class Model_Oz_Product_Category extends ORM {
 				continue;
 
 			$tree[] = $category->as_array() + array(
-				'children' => $this->full_tree($category->id, $stop)
+				'children' => $this->full_tree($category->id, $stop, $order_by)
 			);
 		}
 		return $tree;
