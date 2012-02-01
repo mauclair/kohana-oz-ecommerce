@@ -48,13 +48,9 @@ CREATE TABLE `products` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `description` text COLLATE utf8_unicode_ci NOT NULL,
-  `price` decimal(8,2) unsigned NOT NULL,
-  `sale_price` decimal(8,2) unsigned DEFAULT NULL,
-  `quantity` mediumint(8) unsigned DEFAULT NULL,
   `primary_photo_id` int(10) unsigned DEFAULT NULL,
   `avg_review_rating` decimal(3,1) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `quantity` (`quantity`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `product_categories`;
@@ -145,6 +141,8 @@ CREATE TABLE `product_variations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `product_id` int(10) unsigned NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `price` decimal(8,2) unsigned NOT NULL,
+  `sale_price` decimal(8,2) unsigned DEFAULT NULL,
   `quantity` mediumint(8) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `product_id` (`product_id`),

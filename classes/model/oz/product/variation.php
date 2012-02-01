@@ -17,6 +17,8 @@ abstract class Model_Oz_Product_Variation extends ORM {
 		'id'         => array('type' => 'int'),
 		'product_id' => array('type' => 'int'),
 		'name'       => array('type' => 'string'),
+		'price'      => array('type' => 'float'),
+		'sale_price' => array('type' => 'float'),
 		'quantity'   => array('type' => 'int'),
 	);
 
@@ -31,11 +33,37 @@ abstract class Model_Oz_Product_Variation extends ORM {
 			'name' => array(
 				array('not_empty'),
 			),
+			'price' => array(
+				array('not_empty'),
+				array('numeric'),
+				array('gte', array(':value', 0)),
+			),
+			'sale_price' => array(
+				array('numeric'),
+				array('lt', array(':value', $this->price)),
+				array('gte', array(':value', 0)),
+			),
 			'quantity' => array(
 				array('not_empty'),
 				array('digit'),
 			),
 		);
+	}
+
+	/**
+	 * Overload the save method to set the sale_price to NULL if an empty
+	 * or 0.00 value was given
+	 *
+	 * @param   Validation  $validation
+	 * @return  mixed
+	 */
+	public function save(Validation $validation=NULL)
+	{
+		if ( ! $this->sale_price)
+		{
+			$this->sale_price = NULL;
+		}
+		return parent::save($validation);
 	}
 
 }

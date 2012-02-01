@@ -32,9 +32,6 @@ abstract class Model_Oz_Product extends ORM {
 		'id'                => array('type' => 'int'),
 		'name'              => array('type' => 'string'),
 		'description'       => array('type' => 'string'),
-		'price'             => array('type' => 'float'),
-		'sale_price'        => array('type' => 'float'),
-		'quantity'          => array('type' => 'int'),
 		'primary_photo_id'  => array('type' => 'int'),
 		'avg_review_rating' => array('type' => 'float'),
 	);
@@ -47,19 +44,6 @@ abstract class Model_Oz_Product extends ORM {
 			),
 			'description' => array(
 				array('not_empty'),
-			),
-			'price' => array(
-				array('not_empty'),
-				array('numeric'),
-				array('gte', array(':value', 0)),
-			),
-			'sale_price' => array(
-				array('numeric'),
-				array('lt', array(':value', $this->price)),
-				array('gte', array(':value', 0)),
-			),
-			'quantity' => array(
-				array('digit'),
 			),
 			'primary_photo_id' => array(
 				array('digit'),
@@ -98,42 +82,21 @@ abstract class Model_Oz_Product extends ORM {
 	}
 
 	/**
-	 * If this product has 1 or more variations, then the sum of the 'quantity'
-	 * property shall be returned for those variations. When no variations are
-	 * present, then simply return the 'quantity' property of this object.
+	 * Return the sum of the "quantity" property of all variations this product
+	 * has.
 	 *
 	 * @return  int
 	 */
 	public function available_quantity()
 	{
-		if ($this->loaded())
-		{
-			$quantity = DB::select(array('SUM("quantity")', 'quantity_sum'))
-				->from('product_variations')
-				->where('product_id', '=', $this->pk())
-				->execute()
-				->get('quantity_sum');
+		if ( ! $this->loaded())
+			return 0;
 
-			if (NULL != $quantity)
-				return $quantity;
-		}
-
-		return $this->quantity;
-	}
-
-	/**
-	 * Overload the save method to set the sale_price to NULL if an empty
-	 * or 0.00 value was given
-	 *
-	 * @return  mixed
-	 */
-	public function save(Validation $validation=NULL)
-	{
-		if ( ! $this->sale_price)
-		{
-			$this->sale_price = NULL;
-		}
-		return parent::save($validation);
+		return (int) DB::select(array('SUM("quantity")', 'quantity_sum'))
+			->from('product_variations')
+			->where('product_id', '=', $this->pk())
+			->execute()
+			->get('quantity_sum');
 	}
 
 	/**
