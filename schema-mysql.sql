@@ -50,7 +50,9 @@ CREATE TABLE `products` (
   `description` text COLLATE utf8_unicode_ci NOT NULL,
   `primary_photo_id` int(10) unsigned DEFAULT NULL,
   `avg_review_rating` decimal(3,1) unsigned DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `visible` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `visible` (`visible`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `product_categories`;

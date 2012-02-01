@@ -34,6 +34,7 @@ abstract class Model_Oz_Product extends ORM {
 		'description'       => array('type' => 'string'),
 		'primary_photo_id'  => array('type' => 'int'),
 		'avg_review_rating' => array('type' => 'float'),
+		'visible'           => array('type' => 'int'),
 	);
 
 	public function rules()
@@ -48,6 +49,9 @@ abstract class Model_Oz_Product extends ORM {
 			'primary_photo_id' => array(
 				array('digit'),
 				array('gt', array(':value', 0)),
+			),
+			'visible' => array(
+				array('digit'),
 			),
 		);
 	}
