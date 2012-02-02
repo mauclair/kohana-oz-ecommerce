@@ -51,4 +51,31 @@ abstract class Model_Oz_Order_Product extends ORM {
 		);
 	}
 
+	/**
+	 * Overload save() to stop existing entries being edited
+	 *
+	 * @param   Validation  $validation
+	 * @return  mixed
+	 */
+	public function save(Validation $validation = NULL)
+	{
+		if ($this->loaded())
+			throw new Kohana_Exception('existing order products can not be modified');
+
+		return parent::save($validation);
+	}
+
+	/**
+	 * Overload delete() to stop existing entries being deleted
+	 *
+	 * @return  mixed
+	 */
+	public function delete()
+	{
+		if ($this->loaded())
+			throw new Kohana_Exception('existing order products can not be deleted');
+
+		return parent::delete();
+	}
+
 }
