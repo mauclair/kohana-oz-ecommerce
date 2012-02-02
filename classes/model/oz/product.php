@@ -71,7 +71,7 @@ abstract class Model_Oz_Product extends ORM {
 	public function uncategorised()
 	{
 		return $this->join(array('product_categories_products', 'pivot'), 'LEFT')
-			->on('products.id', '=', 'pivot.product_id')
+			->on($this->object_name().'.id', '=', 'pivot.product_id')
 			->where('pivot.id', 'IS', NULL);
 	}
 
