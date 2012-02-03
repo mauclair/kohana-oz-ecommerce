@@ -50,9 +50,24 @@ abstract class Model_Oz_Product_Photo extends ORM {
 		$foo = parent::delete();
 
 		foreach ($files as $file)
-			if (file_exists($file))
+		{
+			if ( ! $file)
+				continue;
+
+			try
 			{
 				unlink($file);
+
+				// Remove the parent directory if it's empty
+				$dir = dirname($file);
+				if (count(scandir($dir)) == 2)
+				{
+					rmdir($dir);
+				}
+			}
+			catch (Exception $e)
+			{
+				Kohana::$log->add(Log::WARNING, $e->getMessage());
 			}
 		}
 

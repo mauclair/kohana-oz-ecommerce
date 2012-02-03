@@ -104,28 +104,21 @@ abstract class Model_Oz_Product extends ORM {
 	}
 
 	/**
-	 * Overload the delete method to remove all photo file & directory
+	 * Overload the delete method to remove all photos first. This is
+	 * so the physical files (and any resulting dangling directories)
+	 * get removed as well, using the code present in
+	 * Model_Product_Photo::delete()
 	 *
 	 * @return  mixed
 	 */
 	public function delete()
 	{
-		$photo_dir = 'assets/photos/'.$this->id;
-		$foo = parent::delete();
-
-		if (is_dir($photo_dir))
+		foreach ($this->photos->find_all() as $photo)
 		{
-			foreach (new DirectoryIterator($photo_dir) as $file)
-			{
-				if ($file->isFile())
-				{
-					unlink($file->getPathName());
-				}
-			}
-			rmdir($photo_dir);
+			$photo->delete();
 		}
 
-		return $foo;
+		return parent::delete();
 	}
 
 }
