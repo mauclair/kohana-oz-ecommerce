@@ -80,9 +80,10 @@ DROP TABLE IF EXISTS `product_photos`;
 CREATE TABLE `product_photos` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `product_id` int(10) unsigned NOT NULL,
-  `filename` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `path_fullsize` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `path_thumbnail` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `product_id_filename` (`product_id`,`filename`),
+  UNIQUE KEY `product_id_path_fullsize` (`product_id`,`path_fullsize`),
   KEY `product_id` (`product_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
 

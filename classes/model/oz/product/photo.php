@@ -14,9 +14,10 @@ abstract class Model_Oz_Product_Photo extends ORM {
 	);
 
 	protected $_table_columns = array(
-		'id'         => array('type' => 'int'),
-		'product_id' => array('type' => 'int'),
-		'filename'   => array('type' => 'string'),
+		'id'             => array('type' => 'int'),
+		'product_id'     => array('type' => 'int'),
+		'path_fullsize'  => array('type' => 'string'),
+		'path_thumbnail' => array('type' => 'string'),
 	);
 
 	public function rules()
@@ -27,7 +28,11 @@ abstract class Model_Oz_Product_Photo extends ORM {
 				array('digit'),
 				array('gt', array(':value', 0)),
 			),
-			'filename' => array(
+			'path_fullsize' => array(
+				array('not_empty'),
+				array('is_file'),
+			),
+			'path_thumbnail' => array(
 				array('not_empty'),
 				array('is_file'),
 			),
@@ -35,18 +40,20 @@ abstract class Model_Oz_Product_Photo extends ORM {
 	}
 
 	/**
-	 * Overload the delete method to remove the file
+	 * Overload the delete method to remove the photo files first
 	 *
 	 * @return  mixed
 	 */
 	public function delete()
 	{
-		$filename = $this->filename;
+		$files = array($this->path_fullsize, $this->path_thumbnail);
 		$foo = parent::delete();
 
-		if (file_exists($filename))
-		{
-			unlink($filename);
+		foreach ($files as $file)
+			if (file_exists($file))
+			{
+				unlink($file);
+			}
 		}
 
 		return $foo;
