@@ -209,7 +209,7 @@ abstract class Model_Oz_Order extends ORM {
 			throw new Kohana_Exception('existing orders can not be modified');
 
 		$this->date = Db::expr('UTC_TIMESTAMP()');
-		$this->vat_rate = (float) Kohana::config('oz-ecommerce')->vat_rate;
+		$this->vat_rate = (float) Kohana::$config->load('oz-ecommerce')->vat_rate;
 		return parent::save($validation);
 	}
 
